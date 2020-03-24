@@ -22,5 +22,6 @@ module.exports = {
         argsIgnorePattern: "^_",
       },
     ],
+    "camelcase": 0,
   },
 };
