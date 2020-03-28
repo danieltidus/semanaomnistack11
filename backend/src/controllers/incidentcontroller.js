@@ -26,6 +26,7 @@ module.exports = {
       .limit(5)
       .offset((page - 1) * 5)
       .select(['incidents.*',
+        'ongs.name',
         'ongs.email',
         'ongs.whatsapp',
         'ongs.city',
@@ -39,7 +40,7 @@ module.exports = {
     const { id } = request.params;
     const ong_id = request.headers.authorization;
     const incident = await connection('incidents').where('id', id).select('ong_id').first();
-    
+
     if (incident.ong_id !== ong_id) {
       return response.status(401).json({ error: 'Operation not permitted' });
     }
